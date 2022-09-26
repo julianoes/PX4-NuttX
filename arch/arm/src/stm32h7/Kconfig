@@ -763,6 +763,20 @@ config STM32H7_UART8
 endmenu # STM32H7 U[S]ART Selection
 endmenu # STM32H7 Peripheral Selection
 
+menu "STM32H7 PWR Selection"
+	depends on STM32H7_STM32H7X7XX
+choice STM32H7_PWR_REGULATOR
+	prompt "PWR Regulator"
+	default STM32H7_PWR_REGULATOR_SMPS
+	---help---
+		Select the regulator used to drive the internal voltage rails.
+config STM32H7_PWR_REGULATOR_SMPS
+	bool "SMPS"
+config STM32H7_PWR_REGULATOR_LDO
+	bool "LDO"
+endchoice # STM32H7 PWR Regulator
+endmenu # STM32H7 PWR Selection
+
 menu "I2C Configuration"
 	depends on STM32H7_I2C
 
