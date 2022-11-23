@@ -2176,7 +2176,9 @@ int fdcan_initialize(struct fdcan_driver_s *priv)
 
   /* Standard ID Filters: Allow space for 128 filters (128 words) */
 
-  const uint8_t n_stdid = 128;
+  // FIXME: I set this to 0 which fixes a problem where incoming CAN frames
+  // with the standard 11 bit ID are filtered out.
+  const uint8_t n_stdid = 0;
   priv->message_ram.filt_stdid_addr = gl_ram_base + ram_offset * WORD_LENGTH;
 
   regval  = (n_stdid << FDCAN_SIDFC_LSS_SHIFT) & FDCAN_SIDFC_LSS_MASK;
@@ -2186,7 +2188,9 @@ int fdcan_initialize(struct fdcan_driver_s *priv)
 
   /* Extended ID Filters: Allow space for 128 filters (128 words) */
 
-  const uint8_t n_extid = 128;
+  // FIXME: I do the same here just for consistency. I don't quite understand yet
+  // what is wrong with this.
+  const uint8_t n_extid = 0;
   priv->message_ram.filt_extid_addr = gl_ram_base + ram_offset * WORD_LENGTH;
 
   regval = (n_extid << FDCAN_XIDFC_LSE_SHIFT) & FDCAN_XIDFC_LSE_MASK;
